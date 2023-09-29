@@ -1,3 +1,5 @@
+// https://www.codewars.com/kata/56bd9e4b0d0b64eaf5000819
+
 function combineObjects(obj1, obj2) {
   const resultObj = {...obj1};
 

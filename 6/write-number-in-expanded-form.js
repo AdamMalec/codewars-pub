@@ -1,4 +1,6 @@
-function getExpandedForm(num) {
+// https://www.codewars.com/kata/5842df8ccbd22792a4000245
+
+function expandedForm(num) {
   const result = [];
   const numArrStr = [...num.toString()];
   let numLength = numArrStr.length;
