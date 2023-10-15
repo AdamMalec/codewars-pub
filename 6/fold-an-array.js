@@ -4,10 +4,9 @@ function foldArray(array, runs) {
   if (array.length === 1) return array;
   let protoArr = [...array];
   let resultArr = [];
-  console.log(Math.floor(array.length / 2));
 
   while (runs > 0) {
-    resultArr = []
+    resultArr = [];
 
     for (let i = 0; i < Math.floor(protoArr.length / 2); i++) {
       let leftNum = protoArr[i];
@@ -23,5 +22,3 @@ function foldArray(array, runs) {
 
   return resultArr;
 }
-
-foldArray([1, 2, 3, 4, 5], 3); //  [ 6, 6, 3 ]
