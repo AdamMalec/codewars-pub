@@ -12,8 +12,8 @@ class File {
     this._extension = this._fullName.match(/[^\\]*\.(\w+)$/)[1];
     this._contents = contents;
 
-    this.getsCalls = this._contents.split("\n").length;
-    this.wordIndex = 0;
+    this.getsCounter = 0;
+    this.getcCounter = 0;
   }
 
   get fullName() {
@@ -21,7 +21,7 @@ class File {
   }
 
   set fullName(value) {
-    return
+    return;
   }
 
   get filename() {
@@ -29,7 +29,7 @@ class File {
   }
 
   set filename(newFileName) {
-    return
+    return;
   }
 
   get extension() {
@@ -37,7 +37,7 @@ class File {
   }
 
   set extension(newExtension) {
-    return
+    return;
   }
 
   getContents() {
@@ -45,43 +45,30 @@ class File {
   }
 
   write(str) {
-    this.getsCalls++;
-    this._contents =
-      this._contents.length === 0
-        ? str
-        : `${this._contents}\n${str}`;
+    if (this._contents.length === 0) {
+      this._contents = str;
+    } else {
+      this._contents = `${this._contents}\n${str}`;
+    }
   }
 
   gets() {
-    const getSubString = () => {
-      let length = this._contents.split("\n").length;
-      let index = length - this.getsCalls;
-      return this._contents.split("\n")[index];
-    }
-
-    if (this.getsCalls >= 0) {
-      const subString = getSubString();
-      this.getsCalls--;
-      return subString;
+    if (this.getsCounter >= 0) {
+      const line = this._contents.split("\n")[this.getsCounter];
+      this.getsCounter++;
+      return line;
     } else {
-      return undefined
+      return undefined;
     }
   }
 
   getc() {
     if (this._contents.split("\n").length >= 0) {
-      this.wordIndex++;
-      return this._contents.split("")[this.wordIndex - 1]
+      const char = this._contents.split("")[this.getcCounter]
+      this.getcCounter++;
+      return char;
     } else {
       return undefined;
     }
   }
 }
-
-var example = new File("example.txt", "An example file");
-example.write("Hello World");
-console.log(example.getContents());
-
-console.log(example.gets());
-console.log(example.gets());
-console.log(example.gets());
